@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <title>Dashboard User</title>
+  </head>
+  <body>
+    <header>
+      <!-----navbar atas-->
+      <div class="navbar">
+        <div class="logo"><a href="#">E-PERPUS</a></div>
+        <div class="toggle_btn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+      <div class="dropdown">
+        <li>
+          <a href="buku"> <img src="images/Katalog1.png" alt="" /></a>buku yang
+          di pinjam
+        </li>
+        <li>
+          <a href="total"> <img src="images/peminjaman.png" alt="" /></a>total buku
+          yang di pinjam
+        </li>
+        <li>
+          <a href="jadwal"> <img src="images/pengembalian.png" alt="" /></a>jadwal
+          pengembalian buku
+        </li>
+        <li><a href="#" class="action_btn">logout</a></li>
+      </div>
+    </header>
+    <script>
+      const toggleBtn = document.querySelector(".toggle_btn");
+      const toggleBtnIcon = document.querySelector(".toggle_btn i");
+      const dropdown = document.querySelector(".dropdown");
+
+      toggleBtn.onclick = function () {
+        dropdown.classList.toggle("open");
+
+        const isOpen = dropdown.classList.contains("open");
+        toggleBtnIcon.className = isOpen ? "fas fa-xmark" : "fas fa-bars";
+      };
+    </script>
+    <!-----end navbar atas-->
+
+    <!-----navbar samping-->
+    <div class="column">
+      <nav>
+        <ul>
+          <li>
+            <a href="#" class="logo-1">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png"
+                alt=""
+              />
+              <span class="nav-item">info siswa</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="logo-2">
+              <img src="images/qr.png" alt="" />
+              <span class="nav-item">QR</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="logo-2">
+              <img src="images/Katalog1.png" alt="" />
+              <span class="nav-item">katalog</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="logo-2">
+              <img src="images/pinjam.png" alt="" />
+              <span class="nav-item">peminjaman</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="logo-2">
+              <img src="images/kembali.png" alt="" />
+              <span class="nav-item">pengembalian</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="logo-2">
+              <img src="images/Riwayat.png" alt="" />
+              <span class="nav-item">riwayat</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="logo-2">
+              <img src="images/matpel.png" alt="" />
+              <span class="nav-item">matpel</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="logo-2">
+              <img src="images/jurusan.png" alt="" />
+              <span class="nav-item">jurusan</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="logo-2">
+              <img src="images/kelas.png" alt="" />
+              <span class="nav-item">kelas</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-----end navbar samping-->
+
+    <!-----content buku-->
+    <div class="container">
+      <div class="content-box">
+        <div class="navbar_buku">
+          <div class="logo-3">
+            <a href="#">
+              <img src="images/katalog.png" alt="" />
+            </a>
+          </div>
+          <div class="search-container">
+            <input type="text" id="search" placeholder="Cari..." />
+            <button type="submit">Cari</button>
+          </div>
+        </div>
+
+        <div class="main-favourite">
+          <div class="favourite-inner">
+            <div class="inner-favourite">
+              <div class="fav-content">
+                <img src="images/sejarah.png" alt="" />
+              </div>
+
+              <div class="fav-content">
+                <h3>sejarah</h3>
+                <p>buku sejarah kelas x</p>
+                <a href="#">scan/pinjam</a>
+              </div>
+            </div>
+
+            <div class="inner-favourite">
+              <div class="fav-content">
+                <img src="images/mtk.png" alt="" />
+              </div>
+
+              <div class="fav-content">
+                <h3>matematika</h3>
+                <p>buku sejarah kelas x</p>
+                <a href="#">scan/pinjam</a>
+              </div>
+            </div>
+
+            <div class="inner-favourite">
+              <div class="fav-content">
+                <img src="images/produktif rpl.png" alt="" />
+              </div>
+
+              <div class="fav-content">
+                <h3>produktif RPL</h3>
+                <p>buku produktif kelas x</p>
+                <a href="#">scan/pinjam</a>
+              </div>
+            </div>
+
+            <div class="inner-favourite">
+              <div class="fav-content">
+                <img src="images/simulasi komunikasi.png" alt="" />
+              </div>
+
+              <div class="fav-content">
+                <h3>simulasi komunikasi</h3>
+                <p>buku simulasi dan komunikasi kelas x</p>
+                <a href="#">scan/pinjam</a>
+              </div>
+            </div>
+
+            <div class="inner-favourite">
+              <div class="fav-content">
+                <img src="images/produktif tm.png" alt="" />
+              </div>
+
+              <div class="fav-content">
+                <h3>produktif TM</h3>
+                <p>buku produktif teknik mesin kelas x</p>
+                <a href="#">scan/pinjam</a>
+              </div>
+            </div>
+
+            <div class="inner-favourite">
+              <div class="fav-content">
+                <img src="images/produktif tkj.png" alt="" />
+              </div>
+
+              <div class="fav-content">
+                <h3>produkti TKJ</h3>
+                <p>buku produktif tkj kels x</p>
+                <a href="#">scan/pinjam</a>
+              </div>
+            </div>
+          </div>
+          <ul class="pagination">
+            </a><li>prev</li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li>next</li>
+            <!-- Tambahkan lebih banyak halaman sesuai kebutuhan -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-----end content buku-->
+  </body>
+</html>
