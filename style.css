@@ -1,0 +1,98 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+
+    background-image: url('post-image-1656059439544 1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 1512px; ;
+    max-height: 982px;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+
+}
+.judul
+{
+    
+    border-radius: 15px;
+    background: #05689F;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    background-color: #05689F ;
+    max-width: 859px;
+    max-height: 195px;
+    width: auto;
+    height: auto;
+    margin: 1%auto;
+    padding: auto;
+    margin-top: 5%;
+}
+        
+        
+.loginform {
+    border-radius: 15px;
+    background: #05689F;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    
+    max-width: 859px;
+    max-height: 481px;
+    width: auto;
+    height: auto;
+    margin: auto;
+    text-align: center; /* Center the content horizontally */
+    padding: 20px; /* Adjust padding as needed */
+    margin-top: 1%; /* Adjust margin-top as needed */
+    margin-bottom: auto;
+}
+
+
+.img-responsive {
+    width: 100%;
+    max-width: 143px;
+    height: auto;
+    margin-top: 30%;
+    margin-bottom: 20%;
+    margin-left: 10%;
+    }
+
+.input-box {
+    width: 100%;
+    max-width: 400px; 
+    position: relative;
+    border-radius: 9px;
+}
+
+.logo-input {
+    display: flex;
+    align-items: center;
+    background-color: #ccc;
+    border-radius: 5px;
+
+}
+.btn{
+    color: #020202;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#show-password {
+    display: none;
+}
+
+.password-toggle {
+    cursor: pointer;
+    background-image: url('eye-fill.svg'); /* Add your eye icon image */
+    background-size: 20px 20px; /* Adjust the size of the eye icon */
+    width: 24px;
+    height: 20px;
+}
+
+#show-password:checked + .password-toggle {
+    background-image: url('eye-slash-fill.svg'); /* Add your crossed eye icon image */
+}
