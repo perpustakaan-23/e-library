@@ -27,7 +27,7 @@
 } */
 :root{
     /* ===== Colors ===== */
-    --body-color: #E4E9F7;
+    --body-color: #05689F;
     --sidebar-color: #FFF;
     --primary-color: #05689f;
     --primary-color-light: #F6F5FF;
@@ -332,20 +332,33 @@ body.dark .home .text{
     border-radius: 5px;
   }
    */
-
-.g-0 .col-md-4 img
-{
+.g-0 .col-md-4{
     width: 91px;
     height: 91px;
-    background-color: #FCC501;  
     border-radius: 50px;
     display: flex;
     align-items: center;
     margin: auto;
+    text-align: center;
 }
 
-.card-group p,h5 {
+.g-0 .col-md-4 img
+{
+    width: 60px;
+    /* background-color: #FCC501;   */
+    /* border-radius: 50px; */
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.col-md-8 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-body p, .card-body h5 {
     text-align: center;
+    margin: 0; /* Menyelaraskan teks ke tengah vertikal */
 }
 
 .card .mb-3 .mx-2 .mt-4 {

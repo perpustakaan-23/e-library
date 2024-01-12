@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Admin</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="styleadmin.css">
+    <!-- BOX ICON -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!--SIDE BAR NAV -->
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <!--<img src="logo.png" alt="">-->
+                </span>
+                <div class="text logo-text">
+                    <span class="name">Nama Sekolah</span>
+                    <span class="profession">Administrator</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+               
+                    <li class="nav-link">
+                        <a href="../dashboaradmin/index.html">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="../dashboaradmin/katalog/siswa.html">
+                            <i class='bx bx-user icon' ></i>
+                            <span class="text nav-text">Data Siswa</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="../dashboaradmin/katalog/buku.html">
+                            <i class='bx bx-book icon'></i>
+                            <span class="text nav-text">Data Buku</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="../dashboaradmin/katalog/penerbitbuku.html">
+                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <span class="text nav-text">Penerbit Buku</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+              <li data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a href="#">
+                    <i class='bx bx-log-out icon' ></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+              </li>
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
+        </div>
+    </nav>
+    <section class="home">
+        <div class="text" style="color: #fff;"><h1>E-PERPUS</h1></div>
+    </section>
+    <script src="nav.js">
+    </script>
+
+<!-- INFO -->
+  <div class="container mt-5">
+    <div class="card-group justify-content-center">
+      <div class="swiper-slide">
+        <div class="card mb-3 mx-2 mt-4 justify-content-center" style="width: 250px; min-width: 250px; max-width: 250px; height: 150px; min-height: 150px; max-height: 150px;">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-md-4">
+              <img src="../asset/siswa.png"  alt="siswa">
+            </div>
+            <div class="col-md-8 d-flex justify-content-center">
+              <div class="card-body justify-content-center">
+                <h5 class="card-title"><b>0</b></h5>
+                <p class="card-text"><b>Total Siswa</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card mb-3 mx-2 mt-4 justify-content-center" style="width: 250px; min-width: 250px; max-width: 250px; height: 150px; min-height: 150px; max-height: 150px;">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-md-4">
+              <img src="../asset/buku.png" alt="buku">
+            </div>
+            <div class="col-md-8 d-flex justify-content-center">
+              <div class="card-body justify-content-center">
+                <h5 class="card-title"><b>0</b></h5>
+                <p class="card-text"><b>Total Buku</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card mb-3 mx-2 mt-4 justify-content-center" style="width: 250px; min-width: 250px; max-width: 250px; height: 150px; min-height: 150px; max-height: 150px;">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-md-4">
+              <img src="../asset/peminjaman.png"  alt="peminjaman">
+            </div>
+            <div class="col-md-8 d-flex justify-content-center">
+              <div class="card-body justify-content-center">
+                <h5 class="card-title"><b>0</b></h5>
+                <p class="card-text"><b>Peminjaman</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card mb-3 mx-2 mt-4 justify-content-center" style="width: 250px; min-width: 250px; max-width: 250px; height: 150px; min-height: 150px; max-height: 150px;">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-md-4">
+              <img src="../asset/pengembalian.png"  alt="Pengembalian">
+            </div>
+            <div class="col-md-8 d-flex justify-content-center">
+              <div class="card-body justify-content-center">
+                <h5 class="card-title"><b>0</b></h5>
+                <p class="card-text"><b>Pengembalian</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- DATA TABEL -->    
+    <div class="container mb-5" style="margin-left: 100px;">
+      <!-- DATA SISWA -->
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Data Siswa -->
+          <div class="dasis card shadow mb-4 mt-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <h4 class="mb-4"><b>Data Siswa</b></h4>
+                </div>
+                <div class="col-md-6">
+                  <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+              </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">NAMA</th>
+                      <th scope="col">NIS</th>
+                      <th scope="col">TTL</th>
+                      <th scope="col">KELAS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = 1; ?>
+                    <?php foreach ($siswa as $s) : ?>
+                      <tr>
+                        <th scope="row"><?= $no++; ?></th>
+                        <td><?= $s['nama'] ?></td>
+                        <td><?= $s['nis'] ?></td>
+                        <td><?= $s['ttl'] ?></td>
+                        <td><?= $s['kelas'] ?></td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- DATA BUKU -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Data Buku -->
+            <div class="daku card shadow mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4 class="mb-4"><b>Data Buku</b></h4>
+                  </div>
+                  <div class="col-md-6">
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">NAMA BUKU</th>
+                      <th scope="col">KURIKULUM</th>
+                      <th scope="col">KOMPETENSI</th>
+                      <th scope="col">KELAS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = 1; ?>
+                    <?php foreach ($buku as $b) : ?>
+                      <tr>
+                        <th scope="row"><?= $no++; ?></th>
+                        <td><?= $b['nama_buku'] ?></td>
+                        <td><?= $b['kurikulum'] ?></td>
+                        <td><?= $b['kompetensi'] ?></td>
+                        <td><?= $b['kelas'] ?></td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- PENERBIT BUKU -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Data Penerbit Buku -->
+            <div class="dabit card shadow">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4 class="mb-4"><b>Data Penerbit Buku</b></h4>
+                  </div>
+                  <div class="col-md-6">
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">NAMA BUKU</th>
+                      <th scope="col">PENGARANG</th>
+                      <th scope="col">PENERBIT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = 1; ?>
+                    <?php foreach ($penerbit as $p) : ?>
+                      <tr>
+                        <th scope="row"><?= $no++; ?></th>
+                        <td><?= $p['nama_buku'] ?></td>
+                        <td><?= $p['pengarang'] ?></td>
+                        <td><?= $p['penerbit'] ?></td>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- MODAL -->
+    <!-- LOGOUT MODAL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">logout</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           Apakah anda yakin ingin keluar?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary">YA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+  <footer>
+    <!-- place footer here -->
+  </footer>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

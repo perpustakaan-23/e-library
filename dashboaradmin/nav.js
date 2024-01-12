@@ -1,3 +1,5 @@
+
+
 const body = document.querySelector('body'),
       sidebar = body.querySelector('nav'),
       toggle = body.querySelector(".toggle"),
@@ -45,3 +47,17 @@ var swiper = new Swiper(".portofolio-swiper", {
         },
     },
 });
+
+// PROFILE
+function previewImage() {
+    var fileInput = document.getElementById("fotoProfil");
+    var imagePreview = document.getElementById("imagePreview");
+
+    if (fileInput.files && fileInput.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}

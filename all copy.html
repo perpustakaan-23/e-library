@@ -1,0 +1,885 @@
+<?php
+require_once('function/helper.php');
+require_once('function/koneksi.php');
+$process = isset($_GET['process']) ? ($_GET['process']) : false;
+
+
+$siswa = mysqli_query($koneksi, "SELECT * FROM data_siswa");
+$buku = mysqli_query($koneksi, "SELECT * FROM data_buku");
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Admin</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" href="asset/style/styleadmin.css">
+  <!-- BOX ICON -->
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <!--SIDE BAR NAV -->
+  <nav class="sidebar close">
+    <header>
+      <div class="image-text">
+        <span class="bx bx-star icon">
+          <!--<img src="logo.png" alt="">-->
+        </span>
+        <div class="text logo-text">
+          <span class="namasekolah">Nama Sekolah</span>
+          <span class="profession">AdmiNIStrator</span>
+        </div>
+      </div>
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+    <div class="menu-bar">
+      <div class="menu">
+        <li class="search-box">
+          <i class='bx bx-search icon'></i>
+          <input type="text" placeholder="Search.">
+        </li>
+
+        <li class="nav-link">
+          <a href="#dashboard">
+            <i class='bx bx-home-alt icon'></i>
+            <span class="text nav-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a href="#siswa">
+            <i class='bx bx-user icon'></i>
+            <span class="text nav-text">Data Siswa</span>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class='bx bx-book icon'></i>
+            <span class="text nav-text">Data Buku</span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#buku">Buku</a></li>
+            <li><a class="dropdown-item" href="#penerbit">Penerbit Buku</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class='bx bx-pie-chart-alt icon'></i>
+            <span class="text nav-text">Pinjam/Kembali</span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#pinjam">Pinjam</a></li>
+            <li><a class="dropdown-item" href="#kembali">Kembali</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-link">
+          <a href="#laporan">
+            <i class='bx bx-spreadsheet icon'></i>
+            <span class="text nav-text">Laporan</span>
+          </a>
+        </li>
+
+        </ul>
+      </div>
+      <div class="bottom-content">
+        <li>
+          <a href="#profile">
+            <i class='bx bx-pen icon'></i>
+            <span class="text nav-text">Edit Profile</span>
+          </a>
+        </li>
+        <li data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <a href="#">
+            <i class='bx bx-log-out icon'></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
+        <li class="mode">
+          <div class="sun-moon">
+            <i class='bx bx-moon icon moon'></i>
+            <i class='bx bx-sun icon sun'></i>
+          </div>
+          <span class="mode-text text">Dark mode</span>
+          <div class="toggle-switch">
+            <span class="switch"></span>
+          </div>
+        </li>
+      </div>
+    </div>
+  </nav>
+  <!-- HOME-->
+  <section class="home">
+    <div class="text" style="color: #fff;">
+      <h1>E-PERPUS</h1>
+    </div>
+  </section>
+  <script src="asset/js/nav.js">
+  </script>
+
+  <!-- INFO -->
+  <main>
+  <section id="dashboard">
+  <div class="container mt-5">
+    <div class="card-group justify-content-center">
+      <div class="swiper-slide">
+        <div class="card mb-3 mx-2 mt-4 justify-content-center" style="width: 250px; min-width: 250px; max-width: 250px; height: 150px; min-height: 150px; max-height: 150px;">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-md-4" id="INFO">
+              <img src="asset/img/siswa.png" alt="siswa">
+            </div>
+            <div class="col-md-8 d-flex justify-content-center">
+              <div class="card-body justify-content-center">
+                <h5 class="card-title"><b id="Totalsiswa">0</b></h5>
+                <p class="card-text"><b>Total Siswa</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card mb-3 mx-2 mt-4 justify-content-center" style="width: 250px; min-width: 250px; max-width: 250px; height: 150px; min-height: 150px; max-height: 150px;">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-md-4" id="INFO">
+              <img src="asset/img/buku.png" alt="buku">
+            </div>
+            <div class="col-md-8 d-flex justify-content-center">
+              <div class="card-body justify-content-center">
+                <h5 class="card-title"><b id="totalbuku">0</b></h5>
+                <p class="card-text"><b>Total Buku</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card mb-3 mx-2 mt-4 justify-content-center" style="width: 250px; min-width: 250px; max-width: 250px; height: 150px; min-height: 150px; max-height: 150px;">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-md-4" id="INFO">
+              <img src="asset/img/peminjaman.png" alt="peminjaman">
+            </div>
+            <div class="col-md-8 d-flex justify-content-center">
+              <div class="card-body justify-content-center">
+                <h5 class="card-title"><b>0</b></h5>
+                <p class="card-text"><b>Peminjaman</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="card mb-3 mx-2 mt-4 justify-content-center" style="width: 250px; min-width: 250px; max-width: 250px; height: 150px; min-height: 150px; max-height: 150px;">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-md-4" id="INFO">
+              <img src="asset/img/pengembalian.png" alt="Pengembalian">
+            </div>
+            <div class="col-md-8 d-flex justify-content-center">
+              <div class="card-body justify-content-center">
+                <h5 class="card-title"><b>0</b></h5>
+                <p class="card-text"><b>Pengembalian</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA TABEL -->
+  <div class="container mb-5" style="margin-left: 100px;">
+    <!-- DATA SISWA -->
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Data Siswa -->
+        <div class="dasis card shadow mb-4 mt-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="mb-4"><b>Data Siswa</b></h4>
+              </div>
+              <div class="col-md-6">
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">NAMA</th>
+                  <th scope="col">NIS</th>
+                  <th scope="col">TTL</th>
+                  <th scope="col">KELAS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1; ?>
+                <?php foreach ($siswa as $s) : ?>
+                  <tr>
+                    <th scope="row"><?= $no++; ?></th>
+                    <td><?= $s['nama'] ?></td>
+                    <td><?= $s['NIS'] ?></td>
+                    <td><?= $s['tanggal_lahir'] ?></td>
+                    <td><?= $s['kelas'] ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- DATA BUKU -->
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Data Buku -->
+        <div class="daku card shadow mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="mb-4"><b>Data Buku</b></h4>
+              </div>
+              <div class="col-md-6">
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">NAMA BUKU</th>
+                  <th scope="col">KURIKULUM</th>
+                  <th scope="col">KOMPETENSI</th>
+                  <th scope="col">KELAS</th>
+                  <th scope="col">GAMBAR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1; ?>
+                <?php foreach ($buku as $b) : ?>
+                  <tr>
+                    <th scope="row"><?= $no++; ?></th>
+                    <td><?= $b['nama_buku'] ?></td>
+                    <td><?= $b['kurikulum'] ?></td>
+                    <td><?= $b['kompetensi'] ?></td>
+                    <td><?= $b['kelas'] ?></td>
+                    <td><img src="<?= $b['gambar'] ?>" alt="Gambar Buku" width="100px"></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- PENERBIT BUKU -->
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Data Penerbit Buku -->
+        <div class="dabit card shadow">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="mb-4"><b>Data Penerbit Buku</b></h4>
+              </div>
+              <div class="col-md-6">
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">NAMA BUKU</th>
+                  <th scope="col">NAMA PENULIS</th>
+                  <th scope="col">PENERBIT BUKU</th>
+                  <th scope="col">NOMOR SERI BUKU</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1; ?>
+                <?php foreach ($buku as $p) : ?>
+                  <tr>
+                    <th scope="row"><?= $no++; ?></th>
+                    <td><?= $p['nama_buku'] ?></td>
+                    <td><?= $p['nama_penulis'] ?></td>
+                    <td><?= $p['penerbit_buku'] ?></td>
+                    <td><?= $p['no_seri'] ?></td>
+                  <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SISWA -->
+<section id="siswa">
+  <div class="container mt-5" style="margin-left: 100px;">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Data Siswa -->
+        <div class="dasis card shadow mb-4 mt-4">
+          <div class="card-body">
+            <h4 class="mb-4"><b>Data Siswa</b></h4>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">NAMA</th>
+                  <th scope="col">NIS</th>
+                  <th scope="col">TTL</th>
+                  <th scope="col">KELAS</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1; ?>
+                <?php foreach ($siswa as $s) : ?>
+                  <tr>
+                    <th scope="row"><?= $no++; ?></th>
+                    <td><?= $s['nama'] ?></td>
+                    <td><?= $s['NIS'] ?></td>
+                    <td><?= $s['tanggal_lahir'] ?></td>
+                    <td><?= $s['kelas'] ?></td>
+                    <td>
+                      <a class="btn btn-danger" href="<?= BASE_URL . 'process/process_delete.php?id=' . $s['id'] ?>">Delete</a>
+                      <a class="btn btn-info" href="<?= BASE_URL . 'dashboard.php?page=edit&id=' . $s['id'] ?>">Edit</a>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <!-- place footer here -->
+  </footer>
+
+</section>
+
+<!-- BUKU -->
+<section id="buku">
+  <div class="container mt-5" style="margin-left: 100px;">
+    <div class="row">
+        <div class="col-md-12">
+          <!-- Data Buku -->
+          <div class="daku card shadow mb-4 mt-4">
+            <div class="card-body">
+              <h4 class="mb-4"><b>Data Buku</b></h4>
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button data-bs-toggle="modal" data-bs-target="#tambahbuku"class="btn btn-success" >Tambah</button>
+                <li data-bs-toggle="modal" data-bs-target="#tambahbuku">
+
+                </li>
+
+              </form>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NAMA BUKU</th>
+                    <th scope="col">KURIKULUM</th>
+                    <th scope="col">KOMPETENSI</th>
+                    <th scope="col">KELAS</th>
+                    <th scope="col">GAMBAR</th>
+                    <th scope="col">SCAN QR</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $no = 1; ?>
+                  <?php foreach ($data_buku as $b) : ?>
+                  <?php foreach ($siswa as $b) : ?>
+                  <?php foreach ($laporan as $b) : ?>
+                    <tr>
+                      <th scope="row"><?= $no++; ?></th>
+                      <td><?= $b['nama_buku'] ?></td>
+                      <td><?= $b['kurikulum'] ?></td>
+                      <td><?= $b['kompetensi'] ?></td>
+                      <td><?= $b['kelas'] ?></td>
+                      <td>
+                        <img src="<?= $b['gambar'] ?>" alt="Gambar Buku" width="100">
+                      </td>
+                      <td>
+                        <button id="scanBtn d-flex" 
+                        style="width: 57px;
+                        align-items: center;
+                        justify-content: center;
+                        height: 53px;
+                        flex-shrink: 0; 
+                        background: #FFF;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">Scan QR</button>
+                        <div id="scanResult"></div>
+                      
+                        <script>
+                          // Logika pemindaian QR code
+                          const scanBtn = document.getElementById('scanBtn');
+                          const scanResult = document.getElementById('scanResult');
+                      
+                          scanBtn.addEventListener('click', function () {
+                            // Buat objek Instascan
+                            const scanner = new Instascan.Scanner({ video: document.getElementById('scanResult') });
+                      
+                            // Tangkap hasil pemindaian
+                            scanner.addListener('scan', function (content) {
+                              alert('QR Code terdeteksi! Isi: ' + content);
+                            });
+                      
+                            // Mulai pemindaian
+                            Instascan.Camera.getCameras().then(function (cameras) {
+                              if (cameras.length > 0) {
+                                scanner.start(cameras[0]);
+                              } else {
+                                alert('Tidak ada kamera yang ditemukan pada perangkat ini!');
+                              }
+                            }).catch(function (e) {
+                              console.error(e);
+                              alert('Terjadi kesalahan saat mengakses kamera.');
+                            });
+                          });
+                        </script>
+                      </td>
+                      <td>
+                        <a class="btn btn-danger" href="<?= BASE_URL . 'process/process_delete.php?id=' . $b['id'] ?>">Delete</a>
+                        <a class="btn btn-info" href="<?= BASE_URL . 'dashboard.php?page=edit&id=' . $b['id'] ?>">Edit</a>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- PINJAM -->
+<section id="pinjam">
+  <div class="container mt-5" style="margin-left: 100px;">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Data Siswa -->
+        <div class="dasis card shadow mb-4 mt-4">
+          <div class="card-body">
+            <h4 class="mb-4"><b>Data Peminjaman</b></h4>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">NAMA</th>
+                  <th scope="col">NIS</th>
+                  <th scope="col">TANGGAL PINJAM</th>
+                  <th scope="col">NAMA BUKU</th>
+                  <th scope="col">KODE SERI BUKU</th>
+                  <th scope="col">Aksi</th>
+                  <th scope="col">Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1; ?>
+                <?php foreach ($siswa as $s) : ?>
+                <?php foreach ($laporan as $s) : ?>
+                <?php foreach ($data_bukuas $s) : ?>
+                  <tr>
+                    <td><?= $s['nama'] ?></td>
+                    <td><?= $s['NIS'] ?></td>
+                    <td><?= $s['tanggal_pinjam'] ?></td>
+                    <td><?= $s['nama_buku'] ?></td>
+                    <td><?= $s['no_seri'] ?></td>
+                    <td>
+                      <a class="btn btn-danger" href="../katalog/ditolak_pinjam.html">Tolak</a>
+                      <a class="btn btn-success" href="../katalog/berhasil_pinjam.html">Terima</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="<?= BASE_URL . 'process/process_delete.php?id=' . $s['id'] ?>">-</a>
+                      </td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+</section>
+
+<!-- KEMBALI -->
+<section id="kembali">
+<div class="container mt-5" style="margin-left: 100px;">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Data Siswa -->
+            <div class="dasis card shadow mb-4 mt-4">
+              <div class="card-body">
+                <h4 class="mb-4"><b>Data Pengembalian</b></h4>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">NAMA</th>
+                      <th scope="col">NIS</th>
+                      <th scope="col">TANGGAL PENGEMBALIAN</th>
+                      <th scope="col">NAMA BUKU</th>
+                      <th scope="col">KODE SERI BUKU</th>
+                      <th scope="col">Aksi</th>
+                      <th scope="col">Keterangan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = 1; ?>
+                    <?php foreach ($siswa as $s) : ?>
+                    <?php foreach ($laporan as $s) : ?>
+                    <?php foreach ($data_buku as $s) : ?>
+                      <tr>
+                        <td><?= $s['nama'] ?></td>
+                        <td><?= $s['NIS'] ?></td>
+                        <td><?= $s['tanggal_kembali'] ?></td>
+                        <td><?= $s['nama_buku'] ?></td>
+                        <td><?= $s['no_seri'] ?></td>
+                        <td>
+                          <i class='bx bx-lock d-flex' style="min-width: 60px; align-items: center; justify-content: center; font-size: 40px;" ></i>
+                        </td>
+                        <td>
+                          <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" disabled>
+                          <a class="btn btn-success" for="option3">Sudah<br>Dikembalikan</a>
+                        </td>
+              
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+<!--PENERBIT-->
+<section id="penerbit">
+  <div class="container mt-5" style="margin-left: 100px;">
+    <div class="row">
+        <div class="col-md-12">
+          <!-- Data Buku -->
+          <div class="daku card shadow mb-4 mt-4">
+            <div class="card-body">
+              <h4 class="mb-4"><b>Data Penerbit Buku</b></h4>
+  
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahpenerbit">Tambah</button>
+              </form>
+  
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NAMA BUKU</th>
+                    <th scope="col">NAMA PENULIS</th>
+                    <th scope="col">PENERBIT BUKU</th>
+                    <th scope="col">NOMOR SERI BUKU</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $no = 1; ?>
+                  <?php foreach ($buku as $b) : ?>
+                    <tr>
+                      <th scope="row"><?= $no++; ?></th>
+                      <td><?= $b['namabuku'] ?></td>
+                      <td><?= $b['namapenulis'] ?></td>
+                      <td><?= $b['penerbitbuku'] ?></td>
+                      <td><?= $b['nomorseribuku'] ?></td>
+                      <td>
+                        <a class="btn btn-danger" href="<?= BASE_URL . 'process/process_delete.php?id=' . $b['id'] ?>">Delete</a>
+                        <a class="btn btn-info" href="<?= BASE_URL . 'dashboard.php?page=edit&id=' . $b['id'] ?>">Edit</a>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+<!-- LAPORAN -->
+<section id="laporan">
+  <div class="container mt-5 p-4">
+    <div class="dabit card shadow mb-4 mt-4">
+      <div class="card-body mt-2">
+        <h2 class="text-center" style="color: #025787;
+        text-align: center;
+        line-height: normal;">LAPORAN</h2>
+        <div class="box p-5">
+            <div class="dropdown mb-4">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #81CFFA; border-color: #81CFFA;">
+                    <span style="color: black;"><b>Pilih Laporan</b></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Data Siswa</a></li>
+                    <li><a class="dropdown-item" href="#">Data Buku</a></li>
+                    <li><a class="dropdown-item" href="#">Data Peminjaman dan Pengembalian</a></li>
+                </ul>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-2">
+                    <label for="npsn" class="form-label">Dari :</label>
+                </div>
+                <div class="col-md-auto">
+                    <input type="date" class="form-control" style="max-width: 250px;">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-2">
+                    <label for="kepsek" class="form-label">Sampai :</label>
+                </div>
+                <div class="col-md-auto">
+                    <input type="date" class="form-control" style="max-width: 250px;">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #81CFFA; border-color: #81CFFA;">
+                <span style="color: black;"><b>Download</b></span>
+            </button>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div> 
+</div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="container mt-5 p-3">
+    <div class="dabit card shadow mb-4 mt-4">
+      <div class="card-body mt-2">
+        <h2 class="text-center" style="color: #025787;
+        text-align: center;
+        line-height: normal;">Edit Profile</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Form di sebelah kiri -->
+                <form>
+                    <div class="mb-3">
+                        <label for="namasekolah" class="form-label">Nama Sekolah</label>
+                        <input type="text" class="form-control" id="namasekolah">
+                    </div>
+                    <div class="mb-3">
+                        <label for="npsn" class="form-label">NPSN</label>
+                        <input type="text" class="form-control" id="npsn">
+                    </div>
+                    <div class="mb-3">
+                        <label for="kepsek" class="form-label">Nama Kepala Sekolah</label>
+                        <input type="text" class="form-control" id="kepsek">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <input type="text" class="form-control" id="alamat">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Edit Password</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <!-- Form upload foto profil di sebelah kanan -->
+                <form>
+
+                    <div class="mb-3">
+                        <label for="fotoProfil" class="form-label">Pilih Foto Profil</label>
+                        <input type="file" class="form-control" id="fotoProfil" accept="image/*" onchange="previewImage()">
+                    </div>
+                    <div class="mb-3">
+                        <img id="imagePreview" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border: 1px;">
+                    </div>
+                    <div class="d-flex-justify-content-end">
+                        <button type="submit" class="btn btn-primary">Upload Foto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div> 
+</div>
+</section>
+</main>
+  <!-- MODAL -->
+  <!-- LOGOUT MODAL -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">logout</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Apakah anda yakin ingin keluar?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-primary">YA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAMBAHBUKU MODAL -->
+  <div class="modal fade" id="tambahbuku" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah buku</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <label for="namabuku">Nama Buku</label>
+            <input type="text" id="namabuku" name="namabuku" required>
+            <br><br>
+            <label for="kurikulum">Kurikulum</label>
+            <input type="text" id="kurikulum" name="kurikulum" required>
+            <br><br>
+            <label for="kompetensi">Kompetensi</label>
+            <input type="text" id="kompetensi" name="kompetensi" required>
+            <br><br>
+            <label for="kelas">Kelas</label>
+            <input type="text" id="kelas" name="kelas" required>
+            <br><br>
+            <label for="gambar">Gambar</label>
+            <input type="file" id="inputGroupFile02">
+            <br><br>
+            <input type="submit" value="Simpan">
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAMBAHPENERBIT MODAL -->
+
+  <div class="modal fade" id="tambahpenerbit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah buku</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2>Input Penerbit Buku</h2>
+          <form>
+              <label for="namabuku">Nama Buku</label>
+              <input type="text" id="namabuku" name="namabuku" required>
+              <br><br>
+              <label for="namapenulis">Nama Penulis</label>
+              <input type="text" id="namapenulis" name="namapenulis" required>
+              <br><br>
+              <label for="penerbitbuku">Penerbit Buku</label>
+              <input type="text" id="penerbitbuku" name="penerbitbuku" required>
+              <br><br>
+              <label for="nomorseribuku">Nomor Seri Buku</label>
+              <input type="text" id="nomorseribuku" name="nomorseribuku" required>
+              <br><br>
+              <input type="submit" value="Simpan">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        </div>
+      </div>
+    </div>
+  </div>             
+
+  <!-- FOOTER -->
+  <footer>
+    <!-- place footer here -->
+  </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach((link) => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            sections.forEach((section) => {
+                section.style.display = 'none';
+            });
+
+            targetSection.style.display = 'block';
+        });
+    });
+});
+
+</script>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

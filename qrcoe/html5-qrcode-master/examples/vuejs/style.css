@@ -1,0 +1,59 @@
+/* Styling umum untuk halaman */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px;
+}
+
+.footer {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Styling untuk kotak pemindai QR */
+.qrcode-scanner {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Styling untuk pesan hasil pemindaian QR */
+.result {
+  margin: 20px;
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Styling untuk tautan */
+a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Media queries untuk tampilan mobile */
+@media (max-width: 768px) {
+  .qrcode-scanner {
+    padding: 10px;
+    max-width: 100%;
+  }
+}
